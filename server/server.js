@@ -2,12 +2,16 @@ var express = require('express');
 var bodyParser =require('body-parser');
 var {ObjectId} = require('mongodb');
 
+
 var {mongoose} = require('./db/mongoose.js');
+
 var {Todo} = require('./models/todo.js');
+
 var {User} = require('./models/user.js');
 
-var app = express();
 
+var app = express();
+const port = process.enc.PORT || 3000;
 app.use(bodyParser.json());
 
 app.post('/todos',(req,res) => {
@@ -42,7 +46,7 @@ app.get('/todos/:id',(req,res)=>{
     res.status(400).send(e);
   });
 });
-app.listen(3000,() => {
-  console.log('statred at port 3000');
+app.listen(port,() => {
+  console.log(`you statred at ${port} id`);
 });
 module.exports = {app};
