@@ -17,18 +17,23 @@ const users = [{
 },{
   _id:userTwoId,
   email:'vivek@pepwash.in',
-  password:'hellousertwo'
+  password:'hellousertwo',tokens :[{
+    access:'auth',
+    token:jwt.sign({_id:userOneId,access:'auth'},'abc123').toString()
+  }]
 }];
 
 
 const todos = [{
   _id : new ObjectId(),
-  text : 'whats up'
+  text : 'whats up',
+  _creator : userOneId
 },{
   _id : new ObjectId(),
   text: 'second wahts up',
   completed: true,
-  completedAt: 333
+  completedAt: 333,
+  _creator : userTwoId
 }];
 
 const populateTodos = (done) => {
