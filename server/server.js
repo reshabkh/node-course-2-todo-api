@@ -28,7 +28,7 @@ app.post('/todos',authenticate,(req,res) => {
     res.status(400).send(e);
   });
 });
-app.get('/todos',(req,res) =>{
+app.get('/todos',authenticate,(req,res) =>{
   Todo.find({
     _creator:req.user._id
   }).then((todos)=>{
